@@ -1,26 +1,25 @@
 import React from "react";
 
 //include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
 
 //create your first component
-const Home = () => {
+const List = () => {
 	return (
-		<div>
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+		<div className="container d-flex justify-content-center">
+			<div className="row">
+				<div className="col-12 mt-5">Tareas por hacer</div>
+			</div>
+			<div className="row">
+				<ul class="list-group">
+					<li class="list-group-item">An item</li>
+					<li class="list-group-item">A second item</li>
+					<li class="list-group-item">A third item</li>
+					<li class="list-group-item">A fourth item</li>
+					<li class="list-group-item">And a fifth one</li>
+				</ul>
+			</div>
 		</div>
 	);
 };
 
-export default Home;
+export default List;
