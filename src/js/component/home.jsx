@@ -16,7 +16,7 @@ const List = () => {
 						<input
 							type="text"
 							id="name"
-							placeholder="An item"
+							placeholder="What's need to be done?"
 							onKeyDown={(e) => {
 								if (e.key == "Enter") {
 									setItems([...items, e.target.value]);
