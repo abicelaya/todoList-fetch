@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 //include images into your bundle
 
@@ -12,6 +12,17 @@ const List = () => {
 		);
 		setItems(result);
 	};
+
+	function conseguirDatos() {
+		fetch("https://assets.breatheco.de/apis/fake/todos/user/abicelaya")
+		.then((response)=>response.json())
+		.then((result)=>setItems(result))
+		.catch((error)=>console.log("error", error)
+	}
+
+	useEffect(() => {
+
+	}, [])
 
 	return (
 		<div className="container-fluid justify-content-center">
