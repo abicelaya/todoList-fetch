@@ -15,14 +15,40 @@ const List = () => {
 
 	function conseguirDatos() {
 		fetch("https://assets.breatheco.de/apis/fake/todos/user/abicelaya")
-		.then((response)=>response.json())
-		.then((result)=>setItems(result))
-		.catch((error)=>console.log("error", error)
+			.then((response) => response.json())
+			.then((result) => setItems(result))
+			.catch((error) => console.log("error", error));
+	}
+
+	function guardarDatos(items) {
+		var raw = JSON.stringify(items);
+
+		var myHeaders = new Headers();
+		myHeaders.append("Content-Type", "application/json");
+
+		var requestOptions = {
+			method: "PUT",
+			body: raw,
+			headers: myHeaders,
+			redirect: "follow",
+		};
+
+		fetch(
+			"https://assets.breatheco.de/apis/fake/todos/user/abicelaya",
+			requestOptions
+		)
+			.then((response) => response.text())
+			.then((result) => console.log(result))
+			.catch((error) => console.log("error", error));
 	}
 
 	useEffect(() => {
+		conseguirDatos();
+	}, []);
 
-	}, [])
+	useEffect(() => {
+		guardarDatos(items);
+	}, [items]);
 
 	return (
 		<div className="container-fluid justify-content-center">
@@ -39,7 +65,10 @@ const List = () => {
 							onKeyDown={(e) => {
 								if (e.key == "Enter" && e.target.value != "") {
 									/* primero añadimos a la variable de estado items lo que escribio el usuario y con ... guardamos lo que ya habia*/
-									setItems([...items, e.target.value]);
+									setItems([
+										...items,
+										{ label: e.target.value, done: false },
+									]);
 									/*limpio el imput*/
 									e.target.value = "";
 								}
@@ -50,7 +79,7 @@ const List = () => {
 					{items.map((tarea, idx) => {
 						return (
 							<li className="list-group-item" key={idx}>
-								{tarea}
+								{tarea.label}
 
 								<button
 									onClick={() => {
